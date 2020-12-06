@@ -45,7 +45,7 @@ function playRound() {
         alert  ('You won!, Computer lost!')
     }
 
-    else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper" ){
+    else if (computerSelection === "rock" && playerSelection === "scissors" || computerSelection === "paper" && playerSelection === "rock" || computerSelection === "scissors" && playerSelection === "paper" ){
         scoreCompu = scoreCompu +1
         alert ('You lost! , Computer won!') 
     }
