@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> rock paper scissors</title>
+</head>
+<body>
+    <Script>
+
+//computerPlay -> randomly return either ‘rock’, ‘paper’ or ‘scissors’
+
+// Function that plays a singl round with parameters ( the playerSelection and computerSelection)
+// the function have to return  a string for the winner "You Lose! paper beats rock"
+// Make your function case insensitive (so users can input rock, rock, rock or any other variation)
+//you want to return the results of this function call, not console.log() them. 
+
+
+// Create function game(), use the previous function inside game(), keep the score until 5 round then show the loser or winner.
+
+
+let computerOptions = ['rock', 'paper', 'scissors'];
+let scorePlayer=0;
+let scoreCompu=0;
+let rounds=0;
+
+
+function computerPlay(){
+   let Result = computerOptions[Math.floor(Math.random()*computerOptions.length)];
+   return Result
+}
+
+function playRound() {
+    rounds ++;
+    const computerSelection = computerPlay();
+    const playerSelection = prompt("Insert rock, paper or scissors",'').toLowerCase();
+
+    if (playerSelection === computerSelection){
+      alert ("TIE - EMPATE");
+    }
+    
+
+    else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper" ){
+        scorePlayer = scorePlayer +1
+        alert  ('You won!, Computer lost!')
+    }
+
+    else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper" ){
+        scoreCompu = scoreCompu +1
+        alert ('You lost! , Computer won!') 
+    }
+
+    else alert('Insert something or a valid value')
+
+}
+
+
+function game() {
+   
+    playRound();
+    
+    if(rounds===5 && scorePlayer > scoreCompu){
+        alert('Game Over: You Won')
+    } else if (rounds===5 && scorePlayer < scoreCompu){
+        alert('Game Over: Compu Won')
+    } else if (rounds===5 && scorePlayer == scoreCompu) alert('Nobody won')
+    console.log(`Player: ${scorePlayer} | Computer: ${scoreCompu}`)
+
+
+}
+
+
+    </Script>
+</body>
+</html>
