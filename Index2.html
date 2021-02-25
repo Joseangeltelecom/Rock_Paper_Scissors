@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> rock paper scissors</title>
+</head>
+<body>
+
+    <h1><em>Rock Paper Scissors</em></h1>
+
+<h4>Play a five round rock paper scissors game with your computer.</h4>
+
+<button id="rock">rock</button>
+<button id="paper">paper</button>
+<button id="scissors">scissors</button>
+<br>
+<br>
+<div id = 'result'></div>
+<br>
+<div id = 'playerScore'></div>
+<br>
+<div id = 'computerScore'></div>
+
+<style></style>
+
+
+</body>
+
+    <Script>
+
+//computerPlay -> randomly return either ‘rock’, ‘paper’ or ‘scissors’
+
+// Function that plays a singl round with parameters ( the playerSelection and computerSelection)
+// the function have to return  a string for the winner "You Lose! paper beats rock"
+// Make your function case insensitive (so users can input rock, rock, rock or any other variation)
+//you want to return the results of this function call, not console.log() them. 
+
+
+// Create function game(), use the previous function inside game(), keep the score until 5 round then show the loser or winner.
+
+
+let computerOptions = ['rock', 'paper', 'scissors'];
+let scorePlayer=0;
+let scoreCompu=0;
+let rounds=0;
+let result = "";
+
+
+const buttons = document.querySelectorAll('button');
+
+
+buttons.forEach(button => {
+    button.addEventListener('click',function(evento) {
+        game(evento.target.id)
+    });
+    
+});
+
+
+function computerPlay(){
+   let Result1 = computerOptions[Math.floor(Math.random()*computerOptions.length)];
+   return Result1
+}
+
+function playRound(value) {
+    rounds ++;
+    const computerSelection = computerPlay();
+    const playerSelection = value;
+
+    if (playerSelection === computerSelection){
+        result = `Tie!! You chose ${playerSelection} and computer chose ${computerSelection}.`;            
+    }
+   
+
+    else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper" ){
+        scorePlayer += 1
+        result =` You win! You selected ${playerSelection} and computer chose ${computerSelection}.`; 
+    }
+
+    else if (computerSelection === "rock" && playerSelection === "scissors" || computerSelection === "paper" && playerSelection === "rock" || computerSelection === "scissors" && playerSelection === "paper" ){
+        scoreCompu += 1
+        result =` You Lost! You selected ${playerSelection} and computer chose ${computerSelection}.`; 
+    }
+  let res = document.querySelector('#result');
+  res.innerHTML = result;
+}
+
+function game(value) {
+   
+    playRound(value);
+    
+    if(rounds>=5 && scorePlayer > scoreCompu){
+        alert('Game Over: You Won, Please Reload the Page to start over')
+    } else if (rounds>=5 && scorePlayer < scoreCompu){
+        alert('Game Over: You Lost, Please Reload the Page to start over')
+    } else if (rounds>=5 && scorePlayer == scoreCompu) alert(' Nobody won, Please Reload the Page to start over')
+
+document.querySelector('#playerScore').innerHTML = `Player Score: ${scorePlayer}`;  
+document.querySelector('#computerScore').innerHTML = `Computer Score: ${scoreCompu}`;
+
+}
+    </Script>
+</body>
+</html>

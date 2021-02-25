@@ -41,12 +41,12 @@ function playRound() {
     
 
     else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper" ){
-        scorePlayer = scorePlayer +1
+        scorePlayer += 1
         alert  ('You won!, Computer lost!')
     }
 
     else if (computerSelection === "rock" && playerSelection === "scissors" || computerSelection === "paper" && playerSelection === "rock" || computerSelection === "scissors" && playerSelection === "paper" ){
-        scoreCompu = scoreCompu +1
+        scoreCompu += 1
         alert ('You lost! , Computer won!') 
     }
 
@@ -65,7 +65,6 @@ function game() {
         alert('Game Over: Compu Won')
     } else if (rounds===5 && scorePlayer == scoreCompu) alert('Nobody won')
     console.log(`Player: ${scorePlayer} | Computer: ${scoreCompu}`)
-
 
 }
 
