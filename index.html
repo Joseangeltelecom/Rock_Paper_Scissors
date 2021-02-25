@@ -6,6 +6,27 @@
     <title> rock paper scissors</title>
 </head>
 <body>
+
+    <h1><em>Rock Paper Scissors</em></h1>
+
+<h4>Play a five round rock paper scissors game with your computer.</h4>
+
+<button id="rock">rock</button>
+<button id="paper">paper</button>
+<button id="scissors">scissors</button>
+<br>
+<br>
+<div id = 'result'></div>
+<br>
+<div id = 'playerScore'></div>
+<br>
+<div id = 'computerScore'></div>
+
+<style></style>
+
+
+</body>
+
     <Script>
 
 //computerPlay -> randomly return either ‘rock’, ‘paper’ or ‘scissors’
@@ -23,52 +44,62 @@ let computerOptions = ['rock', 'paper', 'scissors'];
 let scorePlayer=0;
 let scoreCompu=0;
 let rounds=0;
+let result = "";
+
+
+const buttons = document.querySelectorAll('button');
+
+
+buttons.forEach(button => {
+    button.addEventListener('click',function(evento) {
+        game(evento.target.id)
+    });
+    
+});
 
 
 function computerPlay(){
-   let Result = computerOptions[Math.floor(Math.random()*computerOptions.length)];
-   return Result
+   let Result1 = computerOptions[Math.floor(Math.random()*computerOptions.length)];
+   return Result1
 }
 
-function playRound() {
+function playRound(value) {
     rounds ++;
     const computerSelection = computerPlay();
-    const playerSelection = prompt("Insert rock, paper or scissors",'').toLowerCase();
+    const playerSelection = value;
 
     if (playerSelection === computerSelection){
-      alert ("TIE - EMPATE");
+        result = `Tie!! You chose ${playerSelection} and computer chose ${computerSelection}.`;            
     }
-    
+   
 
     else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper" ){
         scorePlayer += 1
-        alert  ('You won!, Computer lost!')
+        result =` You win! You selected ${playerSelection} and computer chose ${computerSelection}.`; 
     }
 
     else if (computerSelection === "rock" && playerSelection === "scissors" || computerSelection === "paper" && playerSelection === "rock" || computerSelection === "scissors" && playerSelection === "paper" ){
         scoreCompu += 1
-        alert ('You lost! , Computer won!') 
+        result =` You Lost! You selected ${playerSelection} and computer chose ${computerSelection}.`; 
     }
-
-    else alert('Insert something or a valid value')
-
+  let res = document.querySelector('#result');
+  res.innerHTML = result;
 }
 
-
-function game() {
+function game(value) {
    
-    playRound();
+    playRound(value);
     
-    if(rounds===5 && scorePlayer > scoreCompu){
-        alert('Game Over: You Won')
-    } else if (rounds===5 && scorePlayer < scoreCompu){
-        alert('Game Over: Compu Won')
-    } else if (rounds===5 && scorePlayer == scoreCompu) alert('Nobody won')
-    console.log(`Player: ${scorePlayer} | Computer: ${scoreCompu}`)
+    if(rounds>=5 && scorePlayer > scoreCompu){
+        alert('Game Over: You Won, Please Reload the Page to start over')
+    } else if (rounds>=5 && scorePlayer < scoreCompu){
+        alert('Game Over: You Lost, Please Reload the Page to start over')
+    } else if (rounds>=5 && scorePlayer == scoreCompu) alert(' Nobody won, Please Reload the Page to start over')
+
+document.querySelector('#playerScore').innerHTML = `Player Score: ${scorePlayer}`;  
+document.querySelector('#computerScore').innerHTML = `Computer Score: ${scoreCompu}`;
 
 }
-
-
     </Script>
 </body>
 </html>
